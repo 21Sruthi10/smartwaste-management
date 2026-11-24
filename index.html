@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Waste Management</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f4f7f4;
+  color: #26352c;
+}
+
+header, footer {
+  background: #176b45;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+
+nav {
+  background: #104d32;
+  padding: 14px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+}
+
+main {
+  max-width: 850px;
+  margin: 25px auto;
+  padding: 15px;
+}
+
+section {
+  background: white;
+  padding: 22px;
+  margin: 18px 0;
+  border-radius: 10px;
+}
+
+h2 { color: #176b45; }
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+button {
+  padding: 12px 20px;
+  margin-top: 12px;
+  background: #176b45;
+  color: white;
+  border: 0;
+  border-radius: 6px;
+}
+
+#result {
+  display: none;
+  background: #eaf5ed;
+  padding: 15px;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>SMART WASTE MANAGEMENT</h1>
+<p>Segregate Waste Today for a Cleaner Tomorrow</p>
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#classify">Waste Classifier</a>
+<a href="#tips">Tips</a>
+</nav>
+
+<main>
+
+<section id="home">
+<h2>Welcome to Smart Waste Management</h2>
+<p>Identify waste items and learn how to dispose of them responsibly.</p>
+</section>
+
+<section id="about">
+<h2>About Waste Management</h2>
+<p>Waste management means collecting, separating,
+recycling and safely disposing of waste.</p>
+</section>
+
+<section id="classify">
+<h2>Identify Your Waste</h2>
+<p>Enter an item such as banana peel, plastic bottle or battery.</p>
+
+<input id="waste" placeholder="Enter waste item">
+
+<button onclick="classifyWaste()">Identify Waste</button>
+
+<div id="result"></div>
+</section>
+
+<section id="tips">
+<h2>Waste Management Tips</h2>
+<ul>
+<li>Separate wet and dry waste.</li>
+<li>Reuse and recycle materials.</li>
+<li>Dispose of batteries safely.</li>
+</ul>
+</section>
+
+</main>
+
+<footer>Reduce • Reuse • Recycle</footer>
+
+<script>
+function classifyWaste() {
+  let item = document.getElementById("waste")
+    .value.toLowerCase().trim();
+
+  let box = document.getElementById("result");
+
+  if (!item) {
+    box.textContent = "Please enter a waste item.";
+    box.style.display = "block";
+    return;
+  }
+
+  let type, tip;
+
+  if (/banana|food|fruit|vegetable|leaves|eggshell/.test(item)) {
+    type = "Biodegradable Waste";
+    tip = "Put it in a wet-waste or compost bin.";
+  }
+  else if (/plastic|bottle|glass|paper|cardboard|metal|can/.test(item)) {
+    type = "Recyclable Waste";
+    tip = "Keep it clean and place it in a recycling bin.";
+  }
+  else if (/battery|bulb|chemical|paint|medicine|charger|phone/.test(item)) {
+    type = "Hazardous / Special Waste";
+    tip = "Give it to an authorised collection centre.";
+  }
+  else {
+    type = "General Waste";
+    tip = "Follow your local waste-collection guidelines.";
+  }
+
+  box.innerHTML = "<b>Result:</b> " + type +
+    "<br><b>Suggestion:</b> " + tip;
+
+  box.style.display = "block";
+}
+</script>
+
+</body>
+</html>
